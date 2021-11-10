@@ -9,20 +9,15 @@ import {
   StatusBar,
 } from "react-native";
 
+import { NavigationContainer } from "@react-navigation/native";
+import StackNavigator from "./StackNavigator";
+
 export default function App() {
-  let x = 1;
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Hello World</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-  },
-});
+const styles = StyleSheet.create({});
