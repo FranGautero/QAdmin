@@ -1,12 +1,26 @@
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  Button,
+} from "react-native";
 import tw from "tailwind-rn";
-
-import { Input, Button } from "react-native-elements";
+import { Input } from "react-native-elements";
 import tailwind from "tailwind-rn";
 import { useNavigation } from "@react-navigation/core";
+import useAuth from "../hooks/useAuth";
+
 const LoginScreen = () => {
   const navigation = useNavigation();
+
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
+  const { signInFirebase } = useAuth();
+
   return (
     <SafeAreaView style={tw("flex-1 justify-center items-center")}>
       <Image
@@ -18,16 +32,32 @@ const LoginScreen = () => {
         }}
         source={require("../assets/Qualis_Logo.png")}
       />
-      <Input></Input>
-      <Input></Input>
+      <View
+        style={{
+          width: 300,
+          marginBottom: 25,
+        }}
+      >
+        <Input
+          placeholder={"Usuario"}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        ></Input>
+        <Input
+          placeholder={"Contraseña"}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry={true}
+        ></Input>
+      </View>
+
       <Button
-        title="Log In"
-        onPress={() => navigation.navigate("AgentStatus")}
+        title="Iniciar Sesión"
+        onPress={() => signInFirebase(email, password)}
+        color={"gray"}
       ></Button>
     </SafeAreaView>
   );
 };
 
 export default LoginScreen;
-
-const styles = StyleSheet.create({});
