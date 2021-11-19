@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
-const AgentCard = () => {
+const AgentCard = ({ agent }) => {
   return (
     <View style={styles.container}>
       <View style={styles.agentCircle}></View>
@@ -20,7 +20,7 @@ const AgentCard = () => {
             marginBottom: 3,
           }}
         >
-          Agente 420
+          {`Agente: ${agent.interno}`}
         </Text>
         <Text
           style={{
@@ -28,7 +28,7 @@ const AgentCard = () => {
             color: "#9B9B9B",
           }}
         >
-          time: 69
+          {`Time: ${agent.horaLogIn}`}
         </Text>
       </View>
       <TouchableOpacity
