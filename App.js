@@ -12,13 +12,16 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import StackNavigator from "./StackNavigator";
 import { AuthProvider } from "./hooks/useAuth";
+import { IpProvider } from "./hooks/useConection";
 
 export default function App() {
   return (
     <NavigationContainer>
-      <AuthProvider>
-        <StackNavigator />
-      </AuthProvider>
+      <IpProvider>
+        <AuthProvider>
+          <StackNavigator />
+        </AuthProvider>
+      </IpProvider>
     </NavigationContainer>
   );
 }
