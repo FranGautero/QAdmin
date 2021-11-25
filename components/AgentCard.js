@@ -7,6 +7,7 @@ import { Stopwatch, Timer } from "react-native-stopwatch-timer";
 const AgentCard = ({ agent }) => {
   const [Expanded, setExpanded] = useState(false);
 
+  //get tiempo de fichado
   const startClockTime = Math.round(Date.now() - agent.timestamp_login * 1000);
 
   const date = new Date(agent.timestamp_login * 1000);
