@@ -29,7 +29,7 @@ export const IpProvider = ({ children }) => {
         if (state.type == "wifi") {
           let net = state.details.ipAddress.split(".");
           console.log(net);
-          if (net[0] == "192" && net[1] == "168" && net[2] == 1) {
+          if (net[0] == "192" && net[1] == "168" && net[2] == "1") {
             setIp(state.details.ipAddress);
             console.log(`IP Address: ${ip}`);
           }
@@ -46,12 +46,16 @@ export const IpProvider = ({ children }) => {
   }, []);
 
   // NetInfo.fetch().then((state) => {
-  //   console.log(
-  //     `Connection type: ${state.type}
-  //     Is connected?: ${state.isConnected}`
-  //   );
-  //   setIp(state.details.ipAddress);
-  //   console.log(`IP Address: ${ip}`);
+  //   if (state.type == "wifi") {
+  //     let net = state.details.ipAddress.split(".");
+  //     console.log(net);
+  //     if (net[0] == "192" && net[1] == "168" && net[2] == "2") {
+  //       setIp(state.details.ipAddress);
+  //       console.log(`IP Address: ${ip}`);
+  //     }
+  //   } else {
+  //     setIp(null);
+  //   }
   // });
 
   const memoedValue = useMemo(

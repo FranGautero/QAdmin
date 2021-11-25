@@ -17,7 +17,7 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator>
       {!ip ? (
-        <Stack.Screen name="Conection" component={ConectionScreen} />
+        <Stack.Screen name="Error de conexión!" component={ConectionScreen} />
       ) : !user ? (
         <Stack.Screen
           name="Login"

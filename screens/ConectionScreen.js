@@ -7,9 +7,16 @@ const ConectionScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
+        alignItems: "center",
       }}
     >
-      <Text>Por favor conectese en una red valida</Text>
+      <Text
+        style={{
+          fontSize: 18,
+        }}
+      >
+        Por favor conéctese en una red WIFI válida
+      </Text>
     </SafeAreaView>
   );
 };

@@ -74,6 +74,7 @@ const AgentStatusScreen = () => {
         flex: 1,
       }}
     >
+      <Button title={"logout"} onPress={logout}></Button>
       <Text
         style={{
           margin: 10,
