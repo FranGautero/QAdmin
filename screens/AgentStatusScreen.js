@@ -10,58 +10,42 @@ const AgentStatusScreen = () => {
   const { logout } = useAuth();
   const navigation = useNavigation();
 
-  const DUMMY_DATA = [
-    {
-      id: 1,
-      interno: 420,
-      horaLogIn: 420,
-    },
-    {
-      id: 2,
-      interno: 421,
-      horaLogIn: 420,
-    },
-    {
-      id: 3,
-      interno: 422,
-      horaLogIn: 420,
-    },
-    {
-      id: 4,
-      interno: 423,
-      horaLogIn: 420,
-    },
-    {
-      id: 5,
-      interno: 424,
-      horaLogIn: 420,
-    },
-    {
-      id: 6,
-      interno: 425,
-      horaLogIn: 420,
-    },
-    {
-      id: 7,
-      interno: 426,
-      horaLogIn: 420,
-    },
-    {
-      id: 8,
-      interno: 427,
-      horaLogIn: 420,
-    },
-    {
-      id: 9,
-      interno: 428,
-      horaLogIn: 420,
-    },
-    {
-      id: 10,
-      interno: 429,
-      horaLogIn: 420,
-    },
-  ];
+  const DUMMY_DATA = {
+    success: true,
+    totalCount: 5,
+    registros: [
+      {
+        agente_nro: 101,
+        agente_nombre: "Jesica Sirio",
+        timestamp_login: 1637816635,
+        interno_login: 301,
+      },
+      {
+        agente_nro: 205,
+        agente_nombre: "Pedro Gonzalez",
+        timestamp_login: 1637834268,
+        interno_login: 101,
+      },
+      {
+        agente_nro: 103,
+        agente_nombre: "Silvina Luna",
+        timestamp_login: 1637804508,
+        interno_login: 402,
+      },
+      {
+        agente_nro: 102,
+        agente_nombre: "Burrito Ortega",
+        timestamp_login: 1637807208,
+        interno_login: 303,
+      },
+      {
+        agente_nro: 204,
+        agente_nombre: "Lionel Maradona",
+        timestamp_login: 1637821364,
+        interno_login: 104,
+      },
+    ],
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -86,9 +70,9 @@ const AgentStatusScreen = () => {
         Online
       </Text>
       <FlatList
-        data={DUMMY_DATA}
+        data={DUMMY_DATA.registros}
         renderItem={({ item }) => <AgentCard agent={item} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.agente_nro}
       ></FlatList>
     </SafeAreaView>
   );

@@ -11,9 +11,6 @@ const Stack = createNativeStackNavigator();
 const StackNavigator = () => {
   const { user } = useAuth();
   const { ip } = useConection();
-  // const ip = () => {
-  //   return true;
-  // };
   return (
     <Stack.Navigator>
       {!ip ? (
