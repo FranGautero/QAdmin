@@ -1,10 +1,10 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./screens/LoginScreen";
-import AgentStatusScreen from "./screens/AgentStatusScreen";
 import ConectionScreen from "./screens/ConectionScreen";
 import useAuth from "./hooks/useAuth";
 import useConection from "./hooks/useConection";
+import DrawerNavigator from "./DrawerNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +24,11 @@ const StackNavigator = () => {
           }}
         />
       ) : (
-        <Stack.Screen name="AgentStatus" component={AgentStatusScreen} />
+        <Stack.Screen
+          name="Drawer"
+          component={DrawerNavigator}
+          options={{ headerShown: false }}
+        />
       )}
     </Stack.Navigator>
   );

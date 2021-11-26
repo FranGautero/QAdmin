@@ -1,15 +1,10 @@
-import { useNavigation } from "@react-navigation/core";
-import React, { useLayoutEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import useAuth from "../hooks/useAuth";
 import AgentCard from "../components/AgentCard";
 import { FlatList } from "react-native-gesture-handler";
+import Header from "../components/Header";
 
 const AgentStatusScreen = () => {
-  const { logout } = useAuth();
-  const navigation = useNavigation();
-
   const DUMMY_DATA = {
     success: true,
     totalCount: 5,
@@ -47,28 +42,14 @@ const AgentStatusScreen = () => {
     ],
   };
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
   return (
     <SafeAreaView
       style={{
         flex: 1,
       }}
     >
-      <Button title={"logout"} onPress={logout}></Button>
-      <Text
-        style={{
-          margin: 10,
-          fontStyle: "normal",
-          fontWeight: "bold",
-          fontSize: 20,
-        }}
-      >
-        Online
-      </Text>
+      <Header screenName={"Agentes Online"}></Header>
+
       <FlatList
         data={DUMMY_DATA.registros}
         renderItem={({ item }) => <AgentCard agent={item} />}
@@ -79,5 +60,3 @@ const AgentStatusScreen = () => {
 };
 
 export default AgentStatusScreen;
-
-const styles = StyleSheet.create({});
