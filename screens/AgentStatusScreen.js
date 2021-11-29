@@ -46,6 +46,7 @@ const AgentStatusScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
+        marginTop: 10,
       }}
     >
       <Header screenName={"Agentes Online"}></Header>
