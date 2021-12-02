@@ -10,6 +10,8 @@ export default function Header({ screenName }) {
       style={{
         flexDirection: "row",
         justifyContent: "space-between",
+        marginTop: 8,
+        marginBottom: 16,
       }}
     >
       <Text
