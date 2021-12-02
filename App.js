@@ -6,16 +6,19 @@ import { NavigationContainer } from "@react-navigation/native";
 import StackNavigator from "./StackNavigator";
 import { AuthProvider } from "./hooks/useAuth";
 import { IpProvider } from "./hooks/useConection";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <IpProvider>
-        <AuthProvider>
-          <StackNavigator />
-        </AuthProvider>
-      </IpProvider>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <IpProvider>
+          <AuthProvider>
+            <StackNavigator />
+          </AuthProvider>
+        </IpProvider>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 

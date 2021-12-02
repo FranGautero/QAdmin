@@ -28,7 +28,7 @@ export default function Header({ screenName }) {
           navigation.openDrawer();
         }}
         style={{
-          marginEnd: 28,
+          marginEnd: 16,
         }}
       >
         <Ionicons name="menu" size={35} color="black" />
