@@ -26,6 +26,13 @@ export default function Header({ screenName }) {
         {screenName}
       </Text>
       <TouchableOpacity
+        style={{
+          marginStart: 96,
+        }}
+      >
+        <Ionicons name="refresh" size={35} color="black" />
+      </TouchableOpacity>
+      <TouchableOpacity
         onPress={() => {
           navigation.openDrawer();
         }}

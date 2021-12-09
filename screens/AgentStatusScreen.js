@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AgentCard from "../components/AgentCard";
 import { FlatList } from "react-native-gesture-handler";
 import Header from "../components/Header";
+import { View, Text, TouchableOpacity } from "react-native";
 
 const AgentStatusScreen = () => {
   const DUMMY_DATA = {
