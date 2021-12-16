@@ -19,7 +19,7 @@ const EfficiencyCard = ({ cola }) => {
         setColor("#3399FF");
       }
     }
-  }, []);
+  }, [eficiencia]);
 
   return (
     <View style={styles.container}>

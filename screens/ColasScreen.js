@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import EfficiencyCard from "../components/EfficiencyCard";
 import { FlatList } from "react-native-gesture-handler";
@@ -6,42 +6,34 @@ import { FlatList } from "react-native-gesture-handler";
 import Header from "../components/Header";
 
 const ColasScreen = () => {
-  const DUMMY_DATA = {
-    success: true,
-    totalCount: 5,
-    registros: [
-      {
-        id: 1,
-        nombre_cola: "107",
-        cantidad_total: 6381,
-        cantidad_atendidas: 5763,
-      },
-      {
-        id: 2,
-        nombre_cola: "central_derivaciones",
-        cantidad_total: 3387,
-        cantidad_atendidas: 2777,
-      },
-      {
-        id: 3,
-        nombre_cola: "mesa_sectorial",
-        cantidad_total: 32,
-        cantidad_atendidas: 23,
-      },
-      {
-        id: 4,
-        nombre_cola: "reguladores",
-        cantidad_total: 236,
-        cantidad_atendidas: 213,
-      },
-      {
-        id: 5,
-        nombre_cola: "traslados_iapos",
-        cantidad_total: 367,
-        cantidad_atendidas: 290,
-      },
-    ],
-  };
+  const [colas, setColas] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const URL = "https://aqueous-harbor-90447.herokuapp.com/subscribers/colas";
+
+  useEffect(() => {
+    const getColas = async () => {
+      await fetch(URL)
+        .then((res) => res.json())
+        .then((json) => {
+          const reg = json.registros;
+          setColas(reg);
+        })
+        .catch((error) => alert(error))
+        .finally(() => setLoading(false));
+    };
+    getColas();
+    setInterval(async () => {
+      await fetch(URL)
+        .then((res) => res.json())
+        .then((json) => {
+          const reg = json.registros;
+          setColas(reg);
+        })
+        .catch((error) => alert(error))
+        .finally(() => setLoading(false));
+    }, 30000);
+  }, []);
 
   return (
     <SafeAreaView
@@ -52,7 +44,7 @@ const ColasScreen = () => {
     >
       <Header screenName={"Estadísticas de Colas"}></Header>
       <FlatList
-        data={DUMMY_DATA.registros}
+        data={colas}
         renderItem={({ item }) => <EfficiencyCard cola={item} />}
         keyExtractor={(item) => item.id}
       ></FlatList>

@@ -17,18 +17,12 @@ export const IpProvider = ({ children }) => {
     if (!ip) {
       // Subscribe to network state updates
       const unsubscribe = NetInfo.addEventListener((state) => {
-        console.log(
-          `Connection type: ${state.type}
-          Is connected?: ${state.isConnected}`
-        );
-
         // console.log(state.details);
         if (state.type == "wifi") {
           let net = state.details.ipAddress.split(".");
-          console.log(net);
+
           if (net[0] == "192" && net[1] == "168" && net[2] == "1") {
             setIp(state.details.ipAddress);
-            console.log(`IP Address: ${ip}`);
           }
         } else {
           setIp(null);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AgentCard from "../components/AgentCard";
 import { FlatList } from "react-native-gesture-handler";
@@ -6,42 +6,36 @@ import Header from "../components/Header";
 import { View, Text, TouchableOpacity } from "react-native";
 
 const AgentStatusScreen = () => {
-  const DUMMY_DATA = {
-    success: true,
-    totalCount: 5,
-    registros: [
-      {
-        agente_nro: 101,
-        agente_nombre: "Jesica Sirio",
-        timestamp_login: 1638792513,
-        interno_login: 301,
-      },
-      {
-        agente_nro: 205,
-        agente_nombre: "Pedro Gonzalez",
-        timestamp_login: 1638792513,
-        interno_login: 101,
-      },
-      {
-        agente_nro: 103,
-        agente_nombre: "Silvina Luna",
-        timestamp_login: 1638792513,
-        interno_login: 402,
-      },
-      {
-        agente_nro: 102,
-        agente_nombre: "Burrito Ortega",
-        timestamp_login: 1638792513,
-        interno_login: 303,
-      },
-      {
-        agente_nro: 204,
-        agente_nombre: "Lionel Maradona",
-        timestamp_login: 1638792513,
-        interno_login: 104,
-      },
-    ],
-  };
+  const [agentes, setAgentes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const URL = "https://aqueous-harbor-90447.herokuapp.com/subscribers/agents";
+
+  useEffect(() => {
+    const getAgents = async () => {
+      await fetch(URL)
+        .then((res) => res.json())
+        .then((json) => {
+          const reg = json.registros;
+          setAgentes(reg);
+        })
+        .catch((error) => alert(error))
+        .finally(() => setLoading(false));
+    };
+
+    getAgents();
+
+    setInterval(async () => {
+      await fetch(URL)
+        .then((res) => res.json())
+        .then((json) => {
+          const reg = json.registros;
+          setAgentes(reg);
+        })
+        .catch((error) => alert(error))
+        .finally(() => setLoading(false));
+    }, 30000);
+  }, []);
 
   return (
     <SafeAreaView
@@ -52,11 +46,15 @@ const AgentStatusScreen = () => {
     >
       <Header screenName={"Agentes Online"}></Header>
 
-      <FlatList
-        data={DUMMY_DATA.registros}
-        renderItem={({ item }) => <AgentCard agent={item} />}
-        keyExtractor={(item) => item.agente_nro}
-      ></FlatList>
+      {loading ? (
+        <View></View>
+      ) : (
+        <FlatList
+          data={agentes}
+          renderItem={({ item }) => <AgentCard agent={item} />}
+          keyExtractor={(item) => item.agente_nro}
+        ></FlatList>
+      )}
     </SafeAreaView>
   );
 };
