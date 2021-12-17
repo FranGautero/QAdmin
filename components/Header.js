@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 
-export default function Header({ screenName }) {
+export default function Header({ screenName, refreshFunction, runInterval }) {
   const navigation = useNavigation();
   return (
     <View
@@ -18,6 +18,7 @@ export default function Header({ screenName }) {
         style={{
           margin: 10,
           marginLeft: 16,
+          width: 200,
           fontStyle: "normal",
           fontWeight: "bold",
           fontSize: 20,
@@ -27,7 +28,11 @@ export default function Header({ screenName }) {
       </Text>
       <TouchableOpacity
         style={{
-          marginStart: 96,
+          marginStart: 64,
+        }}
+        onPress={() => {
+          refreshFunction(true);
+          runInterval(false);
         }}
       >
         <Ionicons name="refresh" size={35} color="black" />
