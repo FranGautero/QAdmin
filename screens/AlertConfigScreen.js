@@ -1,13 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Switch } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header";
 import CircularSlider from "rn-circular-slider";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AlertConfigScreen = () => {
   const [value, setValue] = useState(0);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+  const storeData1 = async (v) => {
+    try {
+      let valor = toString(v);
+      let clave = toString("efPercetage");
+      await AsyncStorage.setItem(clave, valor);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const storeData2 = async (v) => {
+    try {
+      await AsyncStorage.setItem(`alertEnabled`, v);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const activateAlert = () => {
+    if (isEnabled) {
+      storeData1(value);
+      let a = "activada";
+      storeData2(a);
+    } else {
+      let b = "desactivada";
+      storeData2(b);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("efPercetage");
+      if (value !== null) {
+        console.log(value);
+      } else {
+        console.log("didnt read lol");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -91,7 +135,13 @@ const AlertConfigScreen = () => {
             trackColor={{ false: "#767577", true: "#81b0ff" }}
             thumbColor={"#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
+            onValueChange={() => {
+              toggleSwitch();
+              console.log(isEnabled);
+              console.log(value);
+              activateAlert();
+              getData();
+            }}
             value={isEnabled}
             style={{ transform: [{ scaleX: 1.4 }, { scaleY: 1.4 }] }}
           />
