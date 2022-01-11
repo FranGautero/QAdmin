@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/Q_Logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "host.exp.exponent"
+      "package": "qualis.qadmin"
     },
     "web": {
       "favicon": "./assets/Q_Logo.png"
