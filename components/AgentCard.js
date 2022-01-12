@@ -12,7 +12,7 @@ const AgentCard = ({ agent }) => {
 
   const date = new Date(agent.timestamp_login * 1000);
   const day = date.getDate();
-  const month = date.getMonth();
+  const month = date.getMonth() + 1;
   const year = date.getFullYear();
   const Hours = date.getHours();
   const minutes = date.getMinutes();
@@ -43,7 +43,7 @@ const AgentCard = ({ agent }) => {
             marginBottom: 16,
           }}
         >
-          {`Agente: ${agent.agente_nro}`}
+          {`Agente: ${agent.agente_nro.split("/")[1]}`}
         </Text>
         <View
           styles={{
@@ -159,7 +159,7 @@ const AgentCard = ({ agent }) => {
             marginBottom: 8,
           }}
         >
-          {`Interno: ${agent.interno_login}`}
+          {`Interno: ${agent.interno_login.split("@")[0]}`}
         </Text>
         <Text
           style={{

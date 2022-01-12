@@ -11,9 +11,23 @@ const AgentStatusScreen = () => {
   const [triggerEffect, setTriggerEffect] = useState(false);
   const [runInterval, setRunInterval] = useState(true);
 
-  const URL = "https://aqueous-harbor-90447.herokuapp.com/subscribers/agents";
+  const URL = "http://170.78.194.2:88/api/agents.php";
 
   useEffect(() => {
+    const loggedAgents = (agentsList) => {
+      return Object.values(
+        agentsList.reduce((acc, curr) => {
+          const { agente_nro, timestamp_login } = curr;
+          const value =
+            !acc[agente_nro] ||
+            acc[agente_nro].timestamp_login < timestamp_login
+              ? curr
+              : acc[agente_nro];
+          return { ...acc, [agente_nro]: value };
+        }, {})
+      ).filter((log) => log.evento === "LOGIN");
+    };
+
     if (triggerEffect) {
       setTriggerEffect(false);
     }
@@ -21,9 +35,8 @@ const AgentStatusScreen = () => {
       await fetch(URL)
         .then((res) => res.json())
         .then((json) => {
-          const reg = json.registros;
+          const reg = loggedAgents(json.registros);
           setAgentes(reg);
-          console.log("cada refresh");
         })
         .catch((error) => alert(error))
         .finally(() => setLoading(false));
@@ -36,9 +49,8 @@ const AgentStatusScreen = () => {
         await fetch(URL)
           .then((res) => res.json())
           .then((json) => {
-            const reg = json.registros;
+            const reg = loggedAgents(json.registros);
             setAgentes(reg);
-            console.log("cada 30");
           })
           .catch((error) => alert(error))
           .finally(() => setLoading(false));

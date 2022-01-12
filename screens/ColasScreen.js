@@ -11,7 +11,7 @@ const ColasScreen = () => {
   const [triggerEffect, setTriggerEffect] = useState(false);
   const [runInterval, setRunInterval] = useState(true);
 
-  const URL = "https://aqueous-harbor-90447.herokuapp.com/subscribers/colas";
+  const URL = "http://170.78.194.2:88/api/colas.php";
 
   useEffect(() => {
     if (triggerEffect) {
@@ -57,7 +57,7 @@ const ColasScreen = () => {
       <FlatList
         data={colas}
         renderItem={({ item }) => <EfficiencyCard cola={item} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.nombre_cola}
       ></FlatList>
     </SafeAreaView>
   );
