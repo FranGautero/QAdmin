@@ -107,7 +107,7 @@ const AgentCard = ({ agent }) => {
             marginBottom: 16,
           }}
         >
-          {`Agente: ${agent.agente_nro}`}
+          {`Agente: ${agent.agente_nro.split("/")[1]}`}
         </Text>
         <View
           styles={{
