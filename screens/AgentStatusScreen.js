@@ -11,7 +11,7 @@ const AgentStatusScreen = () => {
   const [triggerEffect, setTriggerEffect] = useState(false);
   const [runInterval, setRunInterval] = useState(true);
 
-  const URL = "http://170.78.194.2:88/api/agents.php";
+  const URL = "http://ugsp.ddns.net:1082/api/agents.php";
 
   useEffect(() => {
     const loggedAgents = (agentsList) => {

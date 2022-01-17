@@ -11,7 +11,7 @@ const ColasScreen = () => {
   const [triggerEffect, setTriggerEffect] = useState(false);
   const [runInterval, setRunInterval] = useState(true);
 
-  const URL = "http://170.78.194.2:88/api/colas.php";
+  const URL = "http://ugsp.ddns.net:1082/api/colas.php";
 
   useEffect(() => {
     if (triggerEffect) {
