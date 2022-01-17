@@ -19,7 +19,7 @@ const LoginScreen = () => {
           resizeMode: "contain",
           marginTop: -100,
         }}
-        source={require("../assets/Qualis_Logo.png")}
+        source={require("../assets/images/icon.png")}
       />
       <View
         style={{

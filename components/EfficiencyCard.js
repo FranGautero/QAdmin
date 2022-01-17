@@ -3,9 +3,9 @@ import { StyleSheet, Text, View } from "react-native";
 import ProgressCircle from "react-native-progress-circle";
 
 const EfficiencyCard = ({ cola }) => {
-  const eficiencia = Math.round(
-    (cola.cantidad_atendidas / cola.cantidad_total) * 100
-  );
+  const eficiencia = cola.cantidad_total
+    ? Math.round((cola.cantidad_atendidas / cola.cantidad_total) * 100)
+    : 0;
 
   const [color, setColor] = useState("#3399FF");
 
