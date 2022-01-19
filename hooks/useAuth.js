@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useMemo,
 } from "react";
-import { Text, View, alert } from "react-native";
 import { auth } from "../firebase";
 import {
   signInWithEmailAndPassword,
