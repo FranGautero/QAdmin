@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import EfficiencyCard from "../components/EfficiencyCard";
 import { FlatList } from "react-native-gesture-handler";
-
+import useAuth from "../hooks/useAuth";
 import Header from "../components/Header";
 
 const ColasScreen = () => {
@@ -11,7 +11,9 @@ const ColasScreen = () => {
   const [triggerEffect, setTriggerEffect] = useState(false);
   const [runInterval, setRunInterval] = useState(true);
 
-  const URL = "http://ugsp.ddns.net:1082/api/colas.php";
+  const { user } = useAuth();
+
+  const URL = `http://${user.ip}:1082/api/colas.php`;
 
   useEffect(() => {
     if (triggerEffect) {

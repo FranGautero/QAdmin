@@ -5,62 +5,47 @@ import React, {
   useEffect,
   useMemo,
 } from "react";
-import { auth } from "../firebase";
-import {
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-} from "@firebase/auth";
 
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
-  const [loadingInitial, setLoadingInitial] = useState(true);
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-      setLoadingInitial(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setUser(user);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //     setLoadingInitial(false);
+  //   });
+  // }, []);
 
   const logout = async () => {
-    setLoading(true);
-    signOut(auth)
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+    setUser(null);
   };
 
-  const signInFirebase = async (email, password) => {
-    setLoading(true);
-
-    signInWithEmailAndPassword(auth, email, password)
-      .catch((error) => setError(error))
-      .finally(() => setLoading(true));
+  const signIn = async (email, password, ip) => {
+    setUser({
+      email: email,
+      password: password,
+      ip: ip,
+    });
   };
 
   const memoedValue = useMemo(
     () => ({
       user,
-      loading,
-      error,
-      signInFirebase,
+      signIn,
       logout,
     }),
-    [user, loading, error]
+    [user]
   );
 
   return (
-    <AuthContext.Provider value={memoedValue}>
-      {!loadingInitial && children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={memoedValue}>{children}</AuthContext.Provider>
   );
 };
 

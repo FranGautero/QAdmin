@@ -7,19 +7,20 @@ import useAuth from "../hooks/useAuth";
 const LoginScreen = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const [ip, setIp] = useState(null);
 
-  const { signInFirebase } = useAuth();
+  const { signIn } = useAuth();
 
   return (
     <SafeAreaView style={tw("flex-1 justify-center items-center")}>
       <Image
         style={{
-          width: 150,
-          height: 150,
+          width: 256,
+          height: 256,
           resizeMode: "contain",
           marginTop: -100,
         }}
-        source={require("../assets/images/icon.png")}
+        source={require("../assets/images/adaptive-icon.png")}
       />
       <View
         style={{
@@ -38,11 +39,16 @@ const LoginScreen = () => {
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={true}
         ></Input>
+        <Input
+          placeholder={"IP"}
+          value={ip}
+          onChangeText={(text) => setIp(text)}
+        ></Input>
       </View>
 
       <Button
         title="Iniciar Sesión"
-        onPress={() => signInFirebase(email, password)}
+        onPress={() => signIn(email, password, ip)}
         color={"gray"}
       ></Button>
     </SafeAreaView>

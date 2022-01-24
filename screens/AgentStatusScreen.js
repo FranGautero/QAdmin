@@ -4,6 +4,7 @@ import AgentCard from "../components/AgentCard";
 import { FlatList } from "react-native-gesture-handler";
 import Header from "../components/Header";
 import { View } from "react-native";
+import useAuth from "../hooks/useAuth";
 
 const AgentStatusScreen = () => {
   const [agentes, setAgentes] = useState([]);
@@ -11,7 +12,9 @@ const AgentStatusScreen = () => {
   const [triggerEffect, setTriggerEffect] = useState(false);
   const [runInterval, setRunInterval] = useState(true);
 
-  const URL = "http://ugsp.ddns.net:1082/api/agents.php";
+  const { user } = useAuth();
+
+  const URL = `http://${user.ip}:1082/api/agents.php`;
 
   useEffect(() => {
     const loggedAgents = (agentsList) => {
