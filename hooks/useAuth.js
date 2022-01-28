@@ -9,7 +9,6 @@ import React, {
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
 
   // useEffect(() => {
@@ -27,12 +26,25 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const signIn = async (email, password, ip) => {
-    setUser({
-      email: email,
-      password: password,
-      ip: ip,
-    });
+  const signIn = async (user, password, ip, puerto) => {
+    const URL = `http://${ip}:${puerto}/api/logon.php?usr=${user}&pwd=${password}`;
+
+    await fetch(URL)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.validado == 1) {
+          setUser({
+            user: user,
+            password: password,
+            ip: ip,
+            puerto: puerto,
+          });
+        } else {
+          setUser(null);
+          alert("Usuario o Contraseña incorrectos");
+        }
+      })
+      .catch((error) => alert("IP o Puerto Incorrectos"));
   };
 
   const memoedValue = useMemo(

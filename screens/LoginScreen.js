@@ -5,9 +5,10 @@ import { Input } from "react-native-elements";
 import useAuth from "../hooks/useAuth";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState(null);
+  const [user, setUser] = useState(null);
   const [password, setPassword] = useState(null);
   const [ip, setIp] = useState(null);
+  const [puerto, setPuerto] = useState(null);
 
   const { signIn } = useAuth();
 
@@ -30,8 +31,8 @@ const LoginScreen = () => {
       >
         <Input
           placeholder={"Usuario"}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
+          value={user}
+          onChangeText={(text) => setUser(text)}
         ></Input>
         <Input
           placeholder={"Contraseña"}
@@ -44,11 +45,16 @@ const LoginScreen = () => {
           value={ip}
           onChangeText={(text) => setIp(text)}
         ></Input>
+        <Input
+          placeholder={"Puerto"}
+          value={puerto}
+          onChangeText={(text) => setPuerto(text)}
+        ></Input>
       </View>
 
       <Button
         title="Iniciar Sesión"
-        onPress={() => signIn(email, password, ip)}
+        onPress={() => signIn(user, password, ip, puerto)}
         color={"gray"}
       ></Button>
     </SafeAreaView>
