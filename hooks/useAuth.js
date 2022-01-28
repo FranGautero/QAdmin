@@ -1,26 +1,9 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useMemo,
-} from "react";
+import React, { createContext, useContext, useState, useMemo } from "react";
 
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       setUser(user);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //     setLoadingInitial(false);
-  //   });
-  // }, []);
 
   const logout = async () => {
     setUser(null);
