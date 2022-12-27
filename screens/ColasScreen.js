@@ -13,7 +13,7 @@ const ColasScreen = () => {
 
   const { user } = useAuth();
 
-  const URL = `https://${user.ip}:${user.puerto}/api/colas.php?usr=${user.user}&pwd=${user.password}`;
+  const URL = `http://${user.ip}:${user.puerto}/api/colas.php?usr=${user.user}&pwd=${user.password}`;
 
   useEffect(() => {
     if (triggerEffect) {

@@ -13,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -27,6 +29,11 @@
     "web": {
       "favicon": "./assets/images/icon.png"
     },
-    "description": "Administrador de Centrales IP"
+    "description": "Administrador de Centrales IP",
+    "extra": {
+      "eas": {
+        "projectId": "a7d15877-2e09-47a3-b25a-8a6277e85d90"
+      }
+    }
   }
 }

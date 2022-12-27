@@ -14,7 +14,7 @@ const AgentStatusScreen = () => {
 
   const { user } = useAuth();
 
-  const URL = `https://${user.ip}:${user.puerto}/api/agents.php?usr=${user.user}&pwd=${user.password}`;
+  const URL = `http://${user.ip}:${user.puerto}/api/agents.php?usr=${user.user}&pwd=${user.password}`;
 
   useEffect(() => {
     const loggedAgents = (agentsList) => {

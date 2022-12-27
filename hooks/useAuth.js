@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signIn = async (user, password, ip, puerto) => {
-    const URL = `https://${ip}:${puerto}/api/logon.php?usr=${user}&pwd=${password}`;
+    const URL = `http://${ip}:${puerto}/api/logon.php?usr=${user}&pwd=${password}`;
 
     await fetch(URL)
       .then((res) => res.json())
