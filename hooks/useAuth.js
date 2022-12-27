@@ -1,67 +1,46 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useMemo,
-} from "react";
-import { Text, View, alert } from "react-native";
-import { auth } from "../firebase";
-import {
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-} from "@firebase/auth";
+import React, { createContext, useContext, useState, useMemo } from "react";
 
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
-  const [loadingInitial, setLoadingInitial] = useState(true);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-      setLoadingInitial(false);
-    });
-  }, []);
 
   const logout = async () => {
-    setLoading(true);
-    signOut(auth)
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+    setUser(null);
   };
 
-  const signInFirebase = async (email, password) => {
-    setLoading(true);
+  const signIn = async (user, password, ip, puerto) => {
+    const URL = `http://${ip}:${puerto}/api/logon.php?usr=${user}&pwd=${password}`;
 
-    signInWithEmailAndPassword(auth, email, password)
-      .catch((error) => setError(error))
-      .finally(() => setLoading(true));
+    await fetch(URL)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.validado == 1) {
+          setUser({
+            user: user,
+            password: password,
+            ip: ip,
+            puerto: puerto,
+          });
+        } else {
+          setUser(null);
+          alert("Usuario o Contraseña incorrectos");
+        }
+      })
+      .catch((error) => alert("IP o Puerto Incorrectos"));
   };
 
   const memoedValue = useMemo(
     () => ({
       user,
-      loading,
-      error,
-      signInFirebase,
+      signIn,
       logout,
     }),
-    [user, loading, error]
+    [user]
   );
 
   return (
-    <AuthContext.Provider value={memoedValue}>
-      {!loadingInitial && children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={memoedValue}>{children}</AuthContext.Provider>
   );
 };
 

@@ -10,6 +10,8 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/hooks": "^2.8.0",
+    "@react-native-community/netinfo": "6.0.2",
+    "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "@react-navigation/stack": "^6.0.11",
@@ -20,9 +22,15 @@
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-elements": "^3.4.2",
+    "react-native-ionicons": "^4.6.5",
+    "react-native-network-info": "^5.2.1",
+    "react-native-progress-circle": "^2.1.0",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.8.0",
+    "react-native-stopwatch-timer": "^0.0.21",
+    "react-native-svg": "^12.1.1",
     "react-native-web": "0.17.1",
+    "rn-circular-slider": "^1.1.0",
     "tailwind-rn": "^3.0.1"
   },
   "devDependencies": {

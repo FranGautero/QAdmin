@@ -4,9 +4,9 @@
     "slug": "QAdmin",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,14 +21,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "host.exp.exponent"
+      "package": "qualis.qadmin"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/images/icon.png"
     },
-    "description": "Administrador de Centrales IP"
+    "description": "Administrador de Centrales IP",
+    "extra": {
+      "eas": {
+        "projectId": "a7d15877-2e09-47a3-b25a-8a6277e85d90"
+      }
+    }
   }
 }
