@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AgentCard from "../components/AgentCard";
 import { FlatList } from "react-native-gesture-handler";
@@ -75,7 +76,7 @@ const AgentStatusScreen = () => {
       ></Header>
 
       {loading ? (
-        <View></View>
+        <ActivityIndicator size="large" color="#3399FF" />
       ) : (
         <FlatList
           data={agentes}

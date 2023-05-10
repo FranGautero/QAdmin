@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import EfficiencyCard from "../components/EfficiencyCard";
 import { FlatList } from "react-native-gesture-handler";
@@ -56,11 +57,15 @@ const ColasScreen = () => {
         refreshFunction={setTriggerEffect}
         runInterval={setRunInterval}
       ></Header>
-      <FlatList
-        data={colas}
-        renderItem={({ item }) => <EfficiencyCard cola={item} />}
-        keyExtractor={(item) => item.nombre_cola}
-      ></FlatList>
+      {loading ? (
+        <ActivityIndicator size="large" color="#3399FF" />
+      ) : (
+        <FlatList
+          data={colas}
+          renderItem={({ item }) => <EfficiencyCard cola={item} />}
+          keyExtractor={(item) => item.nombre_cola}
+        ></FlatList>
+      )}
     </SafeAreaView>
   );
 };
