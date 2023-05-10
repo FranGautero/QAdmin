@@ -61,7 +61,7 @@ const ColasScreen = () => {
         <ActivityIndicator
           size="large"
           color="#3399FF"
-          style={{ transform: [{ scale: 1.5 }], marginTop: 50 }}
+          style={{ transform: [{ scale: 1.5 }], marginTop: 125 }}
         />
       ) : (
         <FlatList
