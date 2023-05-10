@@ -74,21 +74,19 @@ const AgentStatusScreen = () => {
         refreshFunction={setTriggerEffect}
         runInterval={setRunInterval}
       ></Header>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        {loading ? (
-          <ActivityIndicator
-            size="large"
-            color="#3399FF"
-            style={{ transform: [{ scale: 1.5 }] }}
-          />
-        ) : (
-          <FlatList
-            data={agentes}
-            renderItem={({ item }) => <AgentCard agent={item} />}
-            keyExtractor={(item) => item.agente_nro}
-          ></FlatList>
-        )}
-      </View>
+      {loading ? (
+        <ActivityIndicator
+          size="large"
+          color="#3399FF"
+          style={{ transform: [{ scale: 1.5 }], marginTop: 50 }}
+        />
+      ) : (
+        <FlatList
+          data={agentes}
+          renderItem={({ item }) => <AgentCard agent={item} />}
+          keyExtractor={(item) => item.agente_nro}
+        ></FlatList>
+      )}
     </SafeAreaView>
   );
 };
