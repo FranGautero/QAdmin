@@ -66,9 +66,6 @@ const AgentStatusScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        marginTop: 10,
-        justifyContent: "center",
-        alignItems: "center",
       }}
     >
       <Header
@@ -78,11 +75,15 @@ const AgentStatusScreen = () => {
       ></Header>
 
       {loading ? (
-        <ActivityIndicator
-          size="large"
-          color="#3399FF"
-          style={{ transform: [{ scale: 1.5 }] }}
-        />
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator
+            size="large"
+            color="#3399FF"
+            style={{ transform: [{ scale: 1.5 }] }}
+          />
+        </View>
       ) : (
         <FlatList
           data={agentes}
