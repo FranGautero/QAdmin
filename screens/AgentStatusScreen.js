@@ -66,6 +66,7 @@ const AgentStatusScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
+        marginTop: 10,
       }}
     >
       <Header
@@ -73,7 +74,6 @@ const AgentStatusScreen = () => {
         refreshFunction={setTriggerEffect}
         runInterval={setRunInterval}
       ></Header>
-
       {loading ? (
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}

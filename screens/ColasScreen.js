@@ -49,6 +49,7 @@ const ColasScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
+        marginTop: 10,
       }}
     >
       <Header
