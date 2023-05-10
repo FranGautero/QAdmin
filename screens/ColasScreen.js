@@ -50,6 +50,8 @@ const ColasScreen = () => {
       style={{
         flex: 1,
         marginTop: 10,
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <Header
@@ -58,7 +60,11 @@ const ColasScreen = () => {
         runInterval={setRunInterval}
       ></Header>
       {loading ? (
-        <ActivityIndicator size="large" color="#3399FF" />
+        <ActivityIndicator
+          size="large"
+          color="#3399FF"
+          style={{ transform: [{ scale: 1.5 }] }}
+        />
       ) : (
         <FlatList
           data={colas}
