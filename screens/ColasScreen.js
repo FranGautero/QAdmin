@@ -57,23 +57,21 @@ const ColasScreen = () => {
         refreshFunction={setTriggerEffect}
         runInterval={setRunInterval}
       ></Header>
-      {loading ? (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        {loading ? (
           <ActivityIndicator
             size="large"
             color="#3399FF"
             style={{ transform: [{ scale: 1.5 }] }}
           />
-        </View>
-      ) : (
-        <FlatList
-          data={colas}
-          renderItem={({ item }) => <EfficiencyCard cola={item} />}
-          keyExtractor={(item) => item.nombre_cola}
-        ></FlatList>
-      )}
+        ) : (
+          <FlatList
+            data={colas}
+            renderItem={({ item }) => <EfficiencyCard cola={item} />}
+            keyExtractor={(item) => item.nombre_cola}
+          ></FlatList>
+        )}
+      </View>
     </SafeAreaView>
   );
 };
